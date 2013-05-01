@@ -1,7 +1,7 @@
 """
 Name:           WSDL Wizard
-Version:        1.0
-Date:           4/19/2013
+Version:        1.01
+Date:           5/01/2013
 Author:         Smeege
 Contact:        SmeegeSec@gmail.com
 
@@ -129,7 +129,7 @@ class BurpExtender(IBurpExtender, IContextMenuFactory):
         messageUrlLowerExt = messageUrl[:-4] + messageUrl[-4:].lower()
         
         # Check if ?wsdl is in the URL
-        if '?wsdl' in messageUrl.lower() and messageUrlLowerExt not in self.foundWsdlList:
+        if '?wsdl' in messageUrl.lower() or '.wsdl' in messageUrl.lower() and messageUrlLowerExt not in self.foundWsdlList:
             self.foundWsdlList.append(messageUrlLowerExt)
         else:
             # Check if parameters are in the URL

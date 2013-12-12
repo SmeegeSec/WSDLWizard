@@ -94,8 +94,9 @@ class BurpExtender(IBurpExtender, IContextMenuFactory):
         # Loop through each message, check for a valid 200 response, and send the message to checkMessage function
         for siteMapMessage in self.siteMap:
             if siteMapMessage.getRequest():
-                if str(self._helpers.analyzeResponse(siteMapMessage.getResponse()).getStatusCode()) == '200':
-                    self.checkMessage(siteMapMessage)
+                if siteMapMessage.getResponse():
+                    if str(self._helpers.analyzeResponse(siteMapMessage.getResponse()).getStatusCode()) == '200':
+                        self.checkMessage(siteMapMessage)
 
         if self.foundWsdlList:
             print '%s wsdl file(s) found.\n' % len(self.foundWsdlList)
